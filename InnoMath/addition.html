@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo - Addition Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .game-container input {
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .game-container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .game-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .description button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: 2px solid #ff6347;
+            border-radius: 5px;
+            background-color: #ff6347;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
+        .description button[type="submit"]:hover {
+            background-color: #ff4500;
+            transform: scale(1.05);
+        }
+        #result {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://giffiles.alphacoders.com/220/220440.gif" alt="Jogo Logo">
+        </div>
+        <h1 class="app-name">InnoMath</h1>
+        <nav class="nav">
+            <a href="math.html">Home</a>
+            <a href="signup.html">Signup</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="games.html">Games</a>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="description">
+            <h2>Addition Game</h2>
+            <p>Practice your addition skills with this fun game!</p>
+            <div class="game-container">
+                <p id="question"></p>
+                <input type="number" id="answer" placeholder="Your answer">
+                <button onclick="checkAnswer()">Submit</button>
+                <p id="result"></p>
+            </div>
+            <a href="games.html"><button type="submit">Exit</button></a>
+        </section>
+    </main>
+    <script>
+        let num1 = Math.floor(Math.random() * 10);
+        let num2 = Math.floor(Math.random() * 10);
+        document.getElementById('question').innerText = `What is ${num1} + ${num2}?`;
+
+        function checkAnswer() {
+            let answer = parseInt(document.getElementById('answer').value);
+            let correctAnswer = num1 + num2;
+            if (answer === correctAnswer) {
+                document.getElementById('result').innerText = "Correct!";
+                document.getElementById('result').style.color = "green";
+            } else {
+                document.getElementById('result').innerText = `Incorrect. The correct answer is ${correctAnswer}.`;
+                document.getElementById('result').style.color = "red";
+            }
+            num1 = Math.floor(Math.random() * 10);
+            num2 = Math.floor(Math.random() * 10);
+            document.getElementById('question').innerText = `What is ${num1} + ${num2}?`;
+            document.getElementById('answer').value = '';
+        }
+    </script>
+</body>
+</html>
